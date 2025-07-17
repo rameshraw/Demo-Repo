@@ -1,0 +1,244 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPbCM0RyE2B7W+gVbkmu/AO",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/rameshraw/Demo-Repo/blob/master/ApiCalling\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 20,
+      "metadata": {
+        "id": "m9nUblVSCVPc"
+      },
+      "outputs": [],
+      "source": [
+        "import requests\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "TDh-H1ozvs0r"
+      },
+      "execution_count": 20,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "response= requests.get(\"https://jsonplaceholder.typicode.com/todos/1\")\n",
+        "response"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "XkGc8dMIvtJj",
+        "outputId": "50f86ba5-804c-4a8c-e78f-fad81530362d"
+      },
+      "execution_count": 21,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "<Response [200]>"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 21
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "response.status_code"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "WTPVTR10wZfK",
+        "outputId": "b0830a8e-c268-4c7b-8d1d-7a970113bd8c"
+      },
+      "execution_count": 22,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "200"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 22
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "Json_response=response.json()\n",
+        "Json_response"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "kDO4AtmKxqEk",
+        "outputId": "54814814-b7cb-454e-f732-90e840e17271"
+      },
+      "execution_count": 23,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "{'userId': 1, 'id': 1, 'title': 'delectus aut autem', 'completed': False}"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 23
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "response1=requests.get(\"https://jsonplaceholder.typicode.com/todos/1\")\n",
+        "response2=requests.get(\"https://jsonplaceholder.typicode.com/todos/2\")"
+      ],
+      "metadata": {
+        "id": "l7vOfM2cyMXr"
+      },
+      "execution_count": 24,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "response1.status_code\n",
+        "response2.status_code"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2P2DXBbbyZzY",
+        "outputId": "d8afed27-3b3f-41b6-d5af-94de688e40e1"
+      },
+      "execution_count": 25,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "200"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 25
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "Json_response1=response1.json()\n",
+        "Json_response2=response2.json()\n",
+        "Json_response1,Json_response2"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "RPK1MiUxyfM_",
+        "outputId": "ed9767b9-36e0-40f0-85e9-20ef4a7805f8"
+      },
+      "execution_count": 26,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "({'userId': 1, 'id': 1, 'title': 'delectus aut autem', 'completed': False},\n",
+              " {'userId': 1,\n",
+              "  'id': 2,\n",
+              "  'title': 'quis ut nam facilis et officia qui',\n",
+              "  'completed': False})"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 26
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def getJson(url):\n",
+        "  try:\n",
+        "      response=requests.get(url)\n",
+        "      if(response.status_code==200):\n",
+        "        json=response.json();\n",
+        "        return json;\n",
+        "      else:\n",
+        "        return response.status_code\n",
+        "  except Exception as e:\n",
+        "    print(\"Exception occured:\",e)\n",
+        "# jsonresponse=getJson(\"https://jsonplaceholder.typicode.com/todos/1\")\n",
+        "# jsonresponse\n",
+        "# # jsonresponse=getJson(\"https://jsonplaceholder.typicode.com/todos/2\")\n",
+        "# # jsonresponse\n",
+        "urllist=[\"https://jsonplaceddddholder.typicode.com/todos/1\",\"https://jsonplaceholder.typicode.com/todos/2\"]\n",
+        "for url in urllist:\n",
+        "  response=getJson(url)\n",
+        "  print(response)\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "IBBXdVNvzcuO",
+        "outputId": "088cd0df-6964-4395-fab7-559010cf6af6"
+      },
+      "execution_count": 40,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Exception occured: HTTPSConnectionPool(host='jsonplaceddddholder.typicode.com', port=443): Max retries exceeded with url: /todos/1 (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7947ba99d7d0>: Failed to resolve 'jsonplaceddddholder.typicode.com' ([Errno -2] Name or service not known)\"))\n",
+            "None\n",
+            "{'userId': 1, 'id': 2, 'title': 'quis ut nam facilis et officia qui', 'completed': False}\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
